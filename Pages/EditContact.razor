@@ -1,0 +1,65 @@
+﻿@page "/EditContact/{Id}"
+@using Zenon___Contact_Management_System.Data
+@inject ContactService contactService
+@inject NavigationManager NavigationManager
+
+<h2>Edit a Contact</h2>
+<hr />
+
+<!--Edit contacts last name, first name, phone number and birth date-->
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="Last Name" class="control-label">Last Name</label>
+                <input form="Last Name" class="form-control" @bind="@contact.LastName" />
+            </div>
+            <div class="form-group">
+                <label for="First Name" class="control-label">First Name</label>
+                <input form="First Name" class="form-control" @bind="@contact.FirstName" />
+            </div>
+            <div class="form-group">
+                <label for="Birth Date" class="control-label">Birth Date</label>
+                <input form="Birth Date" class="form-control" @bind="@contact.BirthDate" />
+            </div>
+            <div class="form-group">
+                <label for="Phone Number" class="control-label">Phone Number</label>
+                <input form="Phone Number" class="form-control" @bind="@contact.PhoneNumber" />
+            </div>
+        </div>
+    </div>
+    <!--Create delete, cancel and save buttons-->
+    <div class="row">
+        <div class="col-md-4">
+            <input type="button" class="btn btn-primary" @onclick="@DeleteContact" value="Delete" />
+            <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+            <input type="button" class="btn btn-primary" @onclick="@UpdateContact" value="Save" />
+        </div>
+    </div>
+</form>
+
+<!--Code for getting, saving, deleting and cancelling contacts-->
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    Contact contact = new Contact();
+    protected override async Task OnInitializedAsync()
+    {
+        contact = await Task.Run(() => contactService.GetContactAsync(Convert.ToInt32(Id)));
+    }
+    protected async void UpdateContact()
+    {
+        await contactService.UpdateContactAsync(contact);
+        NavigationManager.NavigateTo("Contacts");
+    }
+    protected async void DeleteContact()
+    {
+        await contactService.DeleteContactAsync(contact);
+        NavigationManager.NavigateTo("Contacts");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Contacts");
+    }
+}
+

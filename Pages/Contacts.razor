@@ -1,0 +1,52 @@
+﻿@page "/Contacts"
+@using Zenon___Contact_Management_System.Data
+@inject ContactService contactservice
+    <!--Show Add Contact Button-->
+<NavLink class="nav-link" href="AddContact">
+    <span class="oi oi-plus" aria-hidden="true"> Add Contact</span>
+
+</NavLink>
+
+<!--If there are any contacts show the list. Otherwise say loading-->
+<h1>Contacts</h1>
+@if (contact is null)
+{
+<p><em>Please wait... </em></p>  
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>BirthDate</th>
+                <th>Phone No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var con in contact)
+            {
+            <tr>
+                <td>@con.LastName</td>
+                <td>@con.FirstName</td>
+                <td>@con.BirthDate</td>
+                <td>@con.PhoneNumber</td>
+                <td>
+                    <a class="nav-link" href="EditContact/@con.Id">
+                    <span class="fa fa-bars" aria-hidden="true">Edit / View</span></a>
+                </td>
+            </tr>
+            }
+            </tbody>
+    </table>
+            }
+<!--View contacts when page refreshes-->
+@code {
+    List<Contact> contact;
+    protected override async Task OnInitializedAsync()
+    {
+        contact = await Task.Run(() => contactservice.GetAllContactsAsync());
+    }
+}

@@ -1,0 +1,55 @@
+﻿@page "/AddContact"
+@using Zenon___Contact_Management_System.Data
+@inject ContactService contactservice
+@inject NavigationManager NavigationManager
+
+<h2>Add Contact</h2>
+<hr />
+
+<!--Get information for each contact-->
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="Last Name" class="control-label">Last Name</label>
+                <input form="Last Name" class="form-control" @bind="@contact.LastName" />
+            </div>
+            <div class="form-group">
+                <label for="First Name" class="control-label">First Name</label>
+                <input form="First Name" class="form-control" @bind="@contact.FirstName" />
+            </div>
+            <div class="form-group">
+                <label for="Birth Date" class="control-label">Birth Date</label>
+                <input form="Birth Date" class="form-control" @bind="@contact.BirthDate" />
+            </div>
+            <div class="form-group">
+                <label for="Phone Number" class="control-label">Phone Number</label>
+                <input form="Phone Number" class="form-control" @bind="@contact.PhoneNumber" />
+            </div>
+        </div>
+        </div>
+</form>
+
+<!--Save or Cancel-->
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" @onclick="@CreateContact" value="Save" />
+            <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+        </div>
+    </div>
+</div>
+
+<!--Code for adding contacts-->
+@code {
+    Contact contact = new Contact();
+    protected async void CreateContact()
+    {
+        await contactservice.AddContactAsync(contact);
+        NavigationManager.NavigateTo("Contacts");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Contacts");
+    }
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenon - Contact Management System", "Zenon - Contact Management System.csproj", "{5E8BB04C-C29E-4195-BB53-867F6C5B6525}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E8BB04C-C29E-4195-BB53-867F6C5B6525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8BB04C-C29E-4195-BB53-867F6C5B6525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8BB04C-C29E-4195-BB53-867F6C5B6525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8BB04C-C29E-4195-BB53-867F6C5B6525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4AB94C8-2E6A-4161-8269-73A8FB21C99B}
+	EndGlobalSection
+EndGlobal
